@@ -14,18 +14,30 @@
                 <div class="logo">
                     <img src="images/AMS-logo.jpeg" alt="AMS">
                 </div>
-                <div >
+                <div>
                     <ul class="home">
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="/crt-tasks/crt-tasks.html">Tasks</a></li>
-                        <li><a>Contact</a></li>
-                        <li><a href="#main">Login</a></li>
+                        <li id="home"><a href="#AMS-landing-page">Home</a></li>
+                        <li id="home"><a href="/crt-tasks/crt-tasks.html">Tasks</a></li>
+                        <li id="home"><a href="/tasks/task-list.html">List</a></li>
+                        <li id="home"><a href="#main">Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         </header>
-        <div class="login-container">
+        <div id="AMS-landing-page">
+            <div id="welcome-pg">
+                <p>Welcome to <em>AMS</em></p>
+
+                <p>Adolf Management System is a modern solution that
+                    helps constructively manage affairs and gain               
+                    intended goal.</p>
+            </div>
+            <div id="start">
+                <button onclick="toggleVisibility()" id="strt-btn">Get Started</button>
+            </div>
+        </div>
+        <div class="login-container" id="log-page">
             <div id="main">
             <h3 id="sign">See Tasks</h3>
             <input id="email" type="text" placeholder="Email"></input>

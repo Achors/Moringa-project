@@ -17,6 +17,8 @@ const createAcctButton = document.getElementById("crt-acc");
 
 
 const main = document.getElementById("main");
+const landPage = document.getElementById("AMS-landing-page");
+const logpage = document.getElementById("log-page")
 const signup = document.getElementById("signup");
 
 const signupButton = document.getElementById("create-acct-btn");
@@ -88,7 +90,7 @@ submitButton.addEventListener("click", function(){
         const user = userCredentials.user;
 
         window.alert("Success!, welcome Back");
-        window.location = "./create-task.html";
+        window.location = "/crt-tasks/crt-tasks.html";
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -139,6 +141,7 @@ addTaskBtn.addEventListener('click', () => {
     .then((response) => response.text())
     .then((message) => {
       console.log(message);
+        window.location = "/tasks/task-list.html";
     });
 })
 
@@ -175,3 +178,13 @@ app.post('#tsk', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+function toggleVisibility (){
+    let div = document.getElementById("log-page");
+    div.style.display = (div.style.display === "none") ? "block" : "none";
+}
+
+getStartedButton.addEventListener("click", function (){
+    logpage.style.display = "none";
+    landPage.style.display = "block";
+})
