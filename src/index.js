@@ -1,8 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    let newId = document.getElementById("text");
-
-})
-
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const submitButton = document.getElementById("submit");
@@ -125,13 +120,81 @@ returnButton.addEventListener("click", function (){
 
     loginForm.addEventListener("submit", handleSubmitBtn);
 
+
+// Creating and Deleting tasks
+
+const task = {
+  id: null,
+  title: "",
+  description: "",
+  date: "",
+};
+
+
+async function fetchTasks() {
+  const response = await fetch('http://localhost:3000/tasks');
+  const tasks = await response.json();
+  const tsk = document.getElementById("tsk-view");
+  tasks.textContent = tsk.task;
+  
+}
+
+async function addTask(newTask) {
+  const response = await fetch('http://localhost:3000/tasks', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTask),
+  });
+  const addedTask = await response.json();
+  const tsk = document.getElementById("tsk-view");
+  addedTask.textContent = tsk.task;
+}
+
+async function editTask(updatedTask) {
+  const response = await fetch(`http://localhost:3000/tasks/${updatedTask.id}`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedTask),
+  });
+  const editedTask = await response.json();
+  const tsk = document.getElementById("tsk-view");
+  editedTask.textContent = tsk.task;
+}
+
+
+async function deleteTask(taskId) {
+  const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: 'DELETE',
+  });
+  // Handle the deletion (e.g., remove the task from the page).
+}
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  fetchTasks();
+  addTask();
+  deleteTask();
+  editTask();
+})
+
+
 const addTaskBtn = document.getElementById('task-btn');
 addTaskBtn.addEventListener('click', () => {
-  const task = document.getElementById('tasks').value;
+  const tasks = document.getElementById('tasks').value;
   const description = document.getElementById('tsk-des').value;
   const date = document.getElementById('dates').value;
+  
+  
+ 
 
-  fetch('http://localhost:3000/AMS', {
+  fetch('http://localhost:3000/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
