@@ -110,59 +110,64 @@ returnButton.addEventListener("click", function (){
     
 });
 
-const signInBtn = document.getElementById("crt-acc" );
-        function handleLoginClick() {
-            window.location.href = "/crt-tasks/crt-tasks.html"; 
+ const loginForm = document.getElementById("main");
+    const submitBtn = document.getElementById("submit");
+        function handleSubmitBtn(event) {
+            event.preventDefault(); 
+            if (email == null || password == null) {
+                    window.alert("Please fill out all required fields");
+                } else {
+            window.location = "/crt-tasks/crt-tasks.html";
+                }
         }
 
-    loginButton.addEventListener("click", handleLoginClick);
+    loginForm.addEventListener("submit", handleSubmitBtn);
 
-// const signupButton = document.getElementById('signup-button');
-// signupButton.addEventListener('click', () => {
-//   const username = document.getElementById('username').value;
-//   const email = document.getElementById('email').value;
-//   const password = document.getElementById('password').value;
+const addTaskBtn = document.getElementById('task-btn');
+addTaskBtn.addEventListener('click', () => {
+  const task = document.getElementById('tasks').value;
+  const description = document.getElementById('tsk-des').value;
+  const date = document.getElementById('dates').value;
 
-//   fetch('http://localhost:3000/signup', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({ username, email, password }),
-//   })
-//     .then((response) => response.text())
-//     .then((message) => {
-//       console.log(message);
-//     });
-// })
+  fetch('http://localhost:3000/AMS', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ task, description, date }),
+  })
+    .then((response) => response.text())
+    .then((message) => {
+      console.log(message);
+    });
+})
 
-const express = require('express');
+const { json } = require('body-parser');
 const fs = require('fs');
-const app = express();
+const app = json();
 const port = 3000;
 
 app.use(db.json());
 
-app.post('#signup', (req, res) => {
-  const signupData = req.body;
+app.post('#tsk', (req, res) => {
+  const taskData = req.body;
 
-  // Read existing data from the JSON file
-  fs.readFile('signupData.json', (err, data) => {
+  fs.readFile('taskData.json', (err, data) => {
     if (err) {
       return res.status(500).json({ error: 'Could not read data.' });
     }
 
     const existingData = JSON.parse(data);
 
-    // Add new signup data to the existing array
-    existingData.push(signupData);
+    // Adding tasks to the existing array
+    existingData.push(taskData);
 
     // Write the updated data back to the JSON file
-    fs.writeFile('signupData.json', JSON.stringify(existingData), (err) => {
+    fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
       if (err) {
         return res.status(500).json({ error: 'Could not write data.' });
       }
-      res.json({ message: 'Account created!' });
+      res.json({ message: 'Task Created!' });
     });
   });
 });
