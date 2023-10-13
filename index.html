@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="sgn-page.css">
+    <title>Management System</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="images/logo.webp" alt="Adolf">
+                </div>
+                <div >
+                    <ul class="home">
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a>About</a></li>
+                        <li><a>Contact</a></li>
+                        <li><a href="./index.html">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        </header>
+        <div class="login-container">
+            <div id="main">
+            <h3 id="sign">Sign In</h3>
+            <input id="email" type="text" placeholder="Email"></input>
+            <input id="password" type="password" placeholder="Password"></input>
+            <button id="submit">Login</button>
+            <p><span>or</span></p>
+            <button id="create-acct-btn">Sign Up</button>
+            </div>
+            <div id="signup">     
+                <h3 id="sign">CREATE ACCOUNT</h3>
+                <input id="firstName" type="text" placeholder="Firstname" required></input>
+                <input id="lastname" type="text" placeholder="Lastname" required></input>
+                <input id="email-signup" type="email" placeholder="Enter your email" required></input>
+                <input id="email-confirm" type="email" placeholder="Confirm your email" required></input>
+                <input id="passwordt" type="password" placeholder="Create your password" required></input>
+                <input id="cfm-passwordt" type="password" placeholder="Confirm your password" required></input>
+                <button id="crt-acc">CREATE ACCOUNT</button>
+                <button id="rtn-acc">RETURN TO LOGIN</button>
+            </div>
+        </div>
+
+ <script src="src/index.js"></script>   
+</body>
+</html>
