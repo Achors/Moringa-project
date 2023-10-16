@@ -43,10 +43,14 @@ ul li{
     text-decoration: none;
     transition: transform 0.2s ease-in-out;
 }
+section {
+    display: none;
+}
 #home {
     border: #293030;
     color: #c70000;
     transition: transform 0.2s ease-in-out;
+    display: block;
 
 }
 #home {
@@ -68,7 +72,7 @@ ul li{
 
 }
 #log-page{
-    display: none;
+    display: block;
 }
 .login-container {
     background-color:rgba(0,0,0,0.2);
@@ -131,4 +135,137 @@ button:hover {
     transition: 0.3s ease-in-out;
     transform: scale(1.1);
     
+}
+
+/* section css */
+#login {
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#signup {
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+#sign {
+    color:#232d2f;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+}
+#signup{
+    display: none;
+}
+input {
+    width: 300px;
+    font-size: 20px;
+    margin-top: 15px;
+    height: 30px;
+    font-style: italic;
+    font-size: 15px;
+    background-color: rgb(199, 199, 199);
+    border: none;
+}
+button {
+    background-color: #C70039;
+    color: white;
+    width: 310px;
+    height: 30px;
+    border: none;
+    margin-top: 12px;
+    font-weight: bold;
+}
+#rtn-acc{
+    background: none;
+    color: grey;
+    text-decoration: underline;
+    border: none;
+    margin-top: 3%;
+}
+
+#task-window {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(233, 228, 228, 0.644);
+}
+.tsks {
+    width: 600px;
+    height: 90vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.my-tsk {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 90%;
+}
+.icon {
+    margin: auto;
+    font-size: 25px;
+    color: rgb(67, 165, 97);
+    cursor: pointer;
+}
+.btn {
+    display: flex;
+    margin: auto;
+    gap: 20px;
+}
+.btn-1 {
+    background-color: rgb(67, 165, 97);
+    color: white;
+    height: 30px;
+    width: 290px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: none;
+}
+.del {
+    background-color: rgb(196, 68, 59);
+}
+.edit {
+    background-color: rgb(170, 170, 170);
+}
+form {
+    width: 100%;
+    background-color: white;
+    margin: auto;
+    height: 60vh;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    color: rgb(67, 165, 97);
+}
+.btn-2 {
+    border: none;
+    font-weight: bolder;
+    height: 25px;
+    width: 120px;
+    color: white;
+    align-items: flex-end;
+
+}
+#contacts {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+#address {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
 }

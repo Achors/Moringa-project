@@ -1,3 +1,22 @@
+const navLinks = document.querySelectorAll("nav a");
+const sections = document.querySelectorAll("section");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const targetSectionId = this.getAttribute("href").substring(1);
+
+        // Hide all sections
+        sections.forEach(section => {
+            section.style.display = "none";
+        });
+
+        // Show the target section
+        document.getElementById(targetSectionId).style.display = "block";
+    });
+});
+
+
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const submitButton = document.getElementById("submit");
@@ -172,10 +191,6 @@ async function deleteTask(taskId) {
   });
   // Handle the deletion (e.g., remove the task from the page).
 }
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function() {
   fetchTasks();

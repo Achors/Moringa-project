@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="sgn-page.css">
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script src="https://kit.fontawesome.com/eddca93003.js" crossorigin="anonymous"></script>
     <title>Management System</title>
 </head>
 <body>
     <header>
-        <nav>
+        <nav id="pages">
             <div class="navbar">
                 <div class="logo">
                     <img src="images/AMS-logo.jpeg" alt="AMS">
                 </div>
                 <div>
-                    <ul class="home">
-                        <li id="home"><a href="#AMS-landing-page">Home</a></li>
-                        <li id="home"><a href="/crt-tasks/crt-tasks.html">Tasks</a></li>
-                        <li id="home"><a href="/tasks/task-list.html">List</a></li>
-                        <li id="home"><a href="#main">Login</a></li>
+                    <ul class="home" >
+                        <li id="home"><a href="#landing-page">Home</a></li>
+                        <li id="home"><a href="#crt-window">Tasks</a></li>
+                        <li id="home"><a href="#task-window">List</a></li>
+                        <li id="home"><a href="#login">Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         </header>
+        <main>
+        <section id="landing-page">
         <div id="AMS-landing-page">
             <div id="welcome-pg">
                 <p>Welcome to <em>AMS</em></p>
@@ -33,13 +35,16 @@
                     helps constructively manage affairs and gain               
                     intended goal.</p>
             </div>
+        
             <div id="start">
                 <button onclick="toggleVisibility()" id="strt-btn">Get Started</button>
             </div>
         </div>
+    </section>
+    <section id="login">
         <div class="login-container" id="log-page">
             <div id="main">
-            <h3 id="sign">See Tasks</h3>
+            <h3 id="sign">Profile</h3>
             <input id="email" type="text" placeholder="Email"></input>
             <input id="password" type="password" placeholder="Password"></input>
             <button id="submit">Login</button>
@@ -58,6 +63,56 @@
                 <button id="rtn-acc">RETURN TO LOGIN</button>
             </div>
         </div>
+    </section>
+    <section id="task-window">
+        <div class="tsks">
+            <div class="my-tsk">
+                <div class="icon">
+            <h3><i class="fa-solid fa-bars"></i> My Tasks</h3>
+                </div>
+            <div class="btn">
+                <button class="btn-1">SHOW All</button>
+                <button class="btn-1 del">DELETE All</button>
+            </div>
+            </div>
+        <div class="form" id="tsk-view">
+            <form>
+            <tr>
+                <th>task</th>
+                <th>task desc</th>
+                <th>completed</th>
+                <div class="btn">
+                <button class="btn-2 edit"><i class="fa-sharp fa-light fa-file-pen"></i> EDIT TASK</button>
+                <button class="btn-2 del"><i class="fa-light fa-trash-can"></i> DELETE TASK</button>
+                </div>
+            </tr>
+            </form>
+        </div>
+        </div>
+    </section>
+    <section id="crt-window">
+        <div id="tsk" class="task">
+            <form id="task" onsubmit="storeTask(event)">
+                <label>Task</label>
+                <input id="tasks" type="text" placeholder="Enter task"></input>
+                <label>Description</label>
+                <input id="tsk-des" type="text" placeholder="Description"></input>
+                <input id="dates" type="number" placeholder="Completion date"></input>
+                <button id="task-btn" name="Create Task">+ADD TASK</button>
+            </form>
+        </div>
+    </section>
+    </main>
+    <footer>
+        <div id="contacts" >
+            <h2>Contact Us</h2>
+            <div id="address">
+                <p>@Ams-page</p>
+                <p>Tel-0722000000</p>
+                <p>Waiyaki way 3rd fl</p>
+            </div>
+        </div>
+    </footer>
 
  <script src="/src/index.js"></script>   
 </body>
