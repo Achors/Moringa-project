@@ -36,9 +36,9 @@ const confirmSignUpPasswordInput = document.getElementById("cfm-passwordt");
 const createAcctButton = document.getElementById("crt-acc");
 
 
-const main = document.getElementById("main");
-const landPage = document.getElementById("AMS-landing-page");
-const logpage = document.getElementById("log-page")
+// const main = document.getElementById("main");
+const landPage = document.getElementById("landing-page");
+const logpage = document.getElementById("login")
 const signup = document.getElementById("signup");
 
 const signupButton = document.getElementById("create-acct-btn");
@@ -55,7 +55,7 @@ confirmSignupEmail,
 confirmSignupPassword;
 
 createAcctButton.addEventListener("click", function () {
-    console.log("hello")
+    // console.log("hello")
     var isVerified = true;
 
     firstname = firstnameInput.value;
@@ -90,7 +90,7 @@ createAcctButton.addEventListener("click", function () {
 
 
             window.alert("Success! Account Created");
-            window.location = "./create-task.html";
+            // window.location = "./create-task.html";
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -110,7 +110,7 @@ submitButton.addEventListener("click", function(){
         const user = userCredentials.user;
 
         window.alert("Success!, welcome Back");
-        window.location = "/crt-tasks/crt-tasks.html";
+        // window.location = "/crt-tasks/crt-tasks.html";
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -139,7 +139,7 @@ returnButton.addEventListener("click", function (){
             if (email == null || password == null) {
                     window.alert("Please fill out all required fields");
                 } else {
-            window.location = "/crt-tasks/crt-tasks.html";
+            // window.location = "";
                 }
         }
 
@@ -149,21 +149,22 @@ returnButton.addEventListener("click", function (){
 // Creating and Deleting tasks
 
 
-const task = {
-  id: null,
-  title: "",
-  description: "",
-  date: "",
-};
+// const task = {
+//   title: "",
+//   description: "",
+//   date: "",
+// };
+const addTaskBtn = document.getElementById('task-btn');
+addTaskBtn.addEventListener('click', () => {
+  const tasks = document.getElementById('tasks').value;
+  const description = document.getElementById('tsk-des').value;
+  const date = document.getElementById('dates').value;
+  // task.title = tasks;
+  // task.description = description;
+  // task.date = date;
+  addTask();
+})
 
-
-async function fetchTasks() {
-  const response = await fetch('http://localhost:3000/tasks');
-  const tasks = await response.json();
-  const tsk = document.getElementById("tsk-view");
-  tasks.textContent = tsk.task;
-  
-}
 
 async function addTask(newTask) {
   const response = await fetch('http://localhost:3000/tasks', {
@@ -171,64 +172,72 @@ async function addTask(newTask) {
       headers: {
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newTask),
+      body: JSON.stringify({
+        title: document.getElementById('tasks').value, 
+        description: document.getElementById('tsk-des').value, 
+        date: document.getElementById('dates').value,
+      }),
   });
-  const addedTask = await response.json();
-  const tsk = document.getElementById("tsk-view");
-  addedTask.textContent = tsk.task;
 }
 
-async function editTask(updatedTask) {
-  const response = await fetch(`http://localhost:3000/tasks/${updatedTask.id}`, {
-      method: 'PUT',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedTask),
-  });
-  const editedTask = await response.json();
+async function fetchTasks() {
+  const response = await fetch('http://localhost:3000/tasks');
+  const tasks = await response.json();
   const tsk = document.getElementById("tsk-view");
-  editedTask.textContent = tsk.task;
+  tasks.forEach(item => {
+    console.log(item);
+  })
+
+  // console.log(tasks);
+  
 }
 
 
-async function deleteTask(taskId) {
-  const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-      method: 'DELETE',
-  });
-  // Handle the deletion (e.g., remove the task from the page).
-};
+// async function editTask(updatedTask) {
+//   const response = await fetch(`http://localhost:3000/tasks/${updatedTask.id}`, {
+//       method: 'PUT',
+//       headers: {
+//           'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(updatedTask),
+//   });
+//   const editedTask = await response.json();
+//   const tsk = document.getElementById("tsk-view");
+//   editedTask.textContent = tsk.task;
+// }
+
+
+// async function deleteTask(taskId) {
+//   const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+//       method: 'DELETE',
+//   });
+//   // Handle the deletion (e.g., remove the task from the page).
+// };
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
   fetchTasks();
-  addTask();
-  deleteTask();
-  editTask();
 })
 
 
-const addTaskBtn = document.getElementById('task-btn');
-addTaskBtn.addEventListener('click', () => {
-  const tasks = document.getElementById('tasks').value;
-  const description = document.getElementById('tsk-des').value;
-  const date = document.getElementById('dates').value;
-  
+
   
  
 
-  fetch('http://localhost:3000/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ task, description, date }),
-  })
-    .then((response) => response.text())
-    .then((message) => {
-      console.log(message);
-        // window.location.href = "#tsk-view";
-    });
-})
+  // fetch('http://localhost:3000/', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ task, description, date }),
+  // })
+  //   .then((response) => response.text())
+  //   .then((message) => {
+  //     console.log(message);
+  //       // window.location.href = "#tsk-view";
+//   //   });
+// })
 function updateTasksList() {
   const taskList = document.getElementById('task-view');
   taskList.innerHTML = ''; 
@@ -242,45 +251,46 @@ function updateTasksList() {
   });
 }
 
-// const { json } = require('body-parser');
-// const fs = require('fs');
-// const app = json();
-// const port = 3000;
+const { json } = require('body-parser');
+const fs = require('fs');
+const app = json();
+const port = 3000;
 
-// app.use(db.json());
+app.use(db.json());
 
-// app.post('#tsk', (req, res) => {
-//   const taskData = req.body;
+app.post('#tsk', (req, res) => {
+  const taskData = req.body;
 
-//   fs.readFile('taskData.json', (err, data) => {
-//     if (err) {
-//       return res.status(500).json({ error: 'Could not read data.' });
-//     }
+  fs.readFile('db.json', (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: 'Could not read data.' });
+    }
 
-//     const existingData = JSON.parse(data);
+    const existingData = JSON.parse(data);
 
-//     // Adding tasks to the existing array
-//     existingData.push(taskData);
+    // Adding tasks to the existing array
+    existingData.push(taskData);
 
-//     // Write the updated data back to the JSON file
-//     fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
-//       if (err) {
-//         return res.status(500).json({ error: 'Could not write data.' });
-//       }
-//       res.json({ message: 'Task Created!' });
-//     });
-//   });
-// });
+    // Write the updated data back to the JSON file
+    fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Could not write data.' });
+      }
+      res.json({ message: 'Task Created!' });
+    });
+  });
+});
 
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 // function toggleVisibility (){
 //     let div = document.getElementById("log-page");
 //     div.style.display = (div.style.display === "none") ? "block" : "none";
 // }
 
+const getStartedButton = document.getElementById("tsk-btn");
 getStartedButton.addEventListener("click", function (){
     logpage.style.display = "none";
     landPage.style.display = "block";
