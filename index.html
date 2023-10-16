@@ -37,10 +37,12 @@
             </div>
         
             <div id="start">
-                <button onclick="toggleVisibility()" id="strt-btn">Get Started</button>
+                <a href="#login"><button id="tsk-btn">Get Started</button></a>
             </div>
         </div>
     </section>
+
+
     <section id="login">
         <div class="login-container" id="log-page">
             <div id="main">
@@ -64,6 +66,8 @@
             </div>
         </div>
     </section>
+
+
     <section id="task-window">
         <div class="tsks">
             <div class="my-tsk">
@@ -90,19 +94,22 @@
         </div>
         </div>
     </section>
+
     <section id="crt-window">
         <div id="tsk" class="task">
             <form id="task" onsubmit="storeTask(event)">
                 <label>Task</label>
-                <input id="tasks" type="text" placeholder="Enter task"></input>
+                <input id="tasks" type="text" placeholder="Enter task" required></input>
                 <label>Description</label>
-                <input id="tsk-des" type="text" placeholder="Description"></input>
+                <input id="tsk-des" type="text" placeholder="Description" required></input>
                 <input id="dates" type="number" placeholder="Completion date"></input>
-                <button id="task-btn" name="Create Task">+ADD TASK</button>
+                <button type="submit" id="task-btn" name="Create Task">+ADD TASK</button>
             </form>
         </div>
     </section>
     </main>
+
+
     <footer>
         <div id="contacts" >
             <h2>Contact Us</h2>

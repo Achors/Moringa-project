@@ -43,6 +43,10 @@ ul li{
     text-decoration: none;
     transition: transform 0.2s ease-in-out;
 }
+#landing-page {
+    display:block;
+    height: 75vh;
+}
 section {
     display: none;
 }
@@ -195,9 +199,15 @@ button {
     padding: 0;
     background-color: rgba(233, 228, 228, 0.644);
 }
+#task {
+    align-items: center;
+    margin: auto;
+    width: 600px;
+    height: 80vh;
+}
 .tsks {
     width: 600px;
-    height: 90vh;
+    height: 80vh;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -255,12 +265,16 @@ form {
     align-items: flex-end;
 
 }
+footer{
+    bottom: 0;
+}
 #contacts {
     align-items: center;
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    bottom: 0;
 }
 #address {
     align-items: center;

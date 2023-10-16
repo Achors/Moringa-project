@@ -11,10 +11,16 @@ navLinks.forEach(link => {
             section.style.display = "none";
         });
 
-        // Show the target section
+
         document.getElementById(targetSectionId).style.display = "block";
     });
 });
+
+
+function addTaskToDb (task) {
+  db.tasks.push(task);
+}
+
 
 
 const emailInput = document.getElementById("email");
@@ -142,6 +148,7 @@ returnButton.addEventListener("click", function (){
 
 // Creating and Deleting tasks
 
+
 const task = {
   id: null,
   title: "",
@@ -190,7 +197,7 @@ async function deleteTask(taskId) {
       method: 'DELETE',
   });
   // Handle the deletion (e.g., remove the task from the page).
-}
+};
 
 document.addEventListener("DOMContentLoaded", function() {
   fetchTasks();
@@ -219,48 +226,60 @@ addTaskBtn.addEventListener('click', () => {
     .then((response) => response.text())
     .then((message) => {
       console.log(message);
-        window.location = "/tasks/task-list.html";
+        // window.location.href = "#tsk-view";
     });
 })
-
-const { json } = require('body-parser');
-const fs = require('fs');
-const app = json();
-const port = 3000;
-
-app.use(db.json());
-
-app.post('#tsk', (req, res) => {
-  const taskData = req.body;
-
-  fs.readFile('taskData.json', (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: 'Could not read data.' });
-    }
-
-    const existingData = JSON.parse(data);
-
-    // Adding tasks to the existing array
-    existingData.push(taskData);
-
-    // Write the updated data back to the JSON file
-    fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Could not write data.' });
-      }
-      res.json({ message: 'Task Created!' });
-    });
+function updateTasksList() {
+  const taskList = document.getElementById('task-view');
+  taskList.innerHTML = ''; 
+  db.tasks.forEach((task, index) => {
+      const taskItem = document.createElement('div');
+      taskItem.innerHTML = `
+          <h3>${task.title}</h3>
+          <p>${task.description}</p>
+      `;
+      taskList.appendChild(taskItem);
   });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-function toggleVisibility (){
-    let div = document.getElementById("log-page");
-    div.style.display = (div.style.display === "none") ? "block" : "none";
 }
+
+// const { json } = require('body-parser');
+// const fs = require('fs');
+// const app = json();
+// const port = 3000;
+
+// app.use(db.json());
+
+// app.post('#tsk', (req, res) => {
+//   const taskData = req.body;
+
+//   fs.readFile('taskData.json', (err, data) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Could not read data.' });
+//     }
+
+//     const existingData = JSON.parse(data);
+
+//     // Adding tasks to the existing array
+//     existingData.push(taskData);
+
+//     // Write the updated data back to the JSON file
+//     fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
+//       if (err) {
+//         return res.status(500).json({ error: 'Could not write data.' });
+//       }
+//       res.json({ message: 'Task Created!' });
+//     });
+//   });
+// });
+
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
+
+// function toggleVisibility (){
+//     let div = document.getElementById("log-page");
+//     div.style.display = (div.style.display === "none") ? "block" : "none";
+// }
 
 getStartedButton.addEventListener("click", function (){
     logpage.style.display = "none";
