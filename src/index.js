@@ -183,9 +183,17 @@ async function addTask(newTask) {
 async function fetchTasks() {
   const response = await fetch('http://localhost:3000/tasks');
   const tasks = await response.json();
-  const tsk = document.getElementById("tsk-view");
+ 
+
   tasks.forEach(item => {
-    console.log(item);
+    const tasksTable = document.createElement("tr");
+    tasksTable.innerHTML = `
+ <td>${item.title}</td>
+ <td>${item.description}</td>
+ <td>${item.date}</td>
+  `;
+   document.querySelector("#tsk-view form").append(tasksTable)
+
   })
 
   // console.log(tasks);

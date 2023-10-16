@@ -92,6 +92,14 @@ section {
     justify-content: center;
 
 }
+tr th, 
+tr td {
+    padding: 10px;
+}
+#tsk-view {
+    margin-top: 8px;
+
+}
 p {
     margin-top: 5%;
     margin-bottom: 5%;
