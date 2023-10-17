@@ -17,11 +17,6 @@ navLinks.forEach(link => {
 });
 
 
-function addTaskToDb (task) {
-  db.tasks.push(task);
-}
-
-
 
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -148,12 +143,6 @@ returnButton.addEventListener("click", function (){
 
 // Creating and Deleting tasks
 
-
-// const task = {
-//   title: "",
-//   description: "",
-//   date: "",
-// };
 const addTaskBtn = document.getElementById('task-btn');
 addTaskBtn.addEventListener('click', () => {
   const tasks = document.getElementById('tasks').value;
@@ -164,7 +153,6 @@ addTaskBtn.addEventListener('click', () => {
   // task.date = date;
   addTask();
 })
-
 
 async function addTask(newTask) {
   const response = await fetch('http://localhost:3000/tasks', {
@@ -215,12 +203,15 @@ async function fetchTasks() {
 // }
 
 
-// async function deleteTask(taskId) {
-//   const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-//       method: 'DELETE',
-//   });
-//   // Handle the deletion (e.g., remove the task from the page).
-// };
+async function deleteTask(taskId) {
+  const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: 'DELETE',
+  })
+  .then(response => response.json())
+  .then(data => {
+    taskItem.remove();
+  })
+};
 
 
 

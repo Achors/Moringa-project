@@ -32,7 +32,7 @@
                 <p>Welcome to <em>AMS</em></p>
 
                 <p>Adolf Management System is a modern solution that
-                    helps constructively manage affairs and gain               
+                    helps constructively manage Tasks and gain               
                     intended goal.</p>
             </div>
         
@@ -68,6 +68,21 @@
     </section>
 
 
+    <section id="crt-window">
+        <div id="tsk" class="task">
+            <form id="task">
+                <label>Task</label>
+                <input id="tasks" type="text" placeholder="Enter task" required></input>
+                <label>Description</label>
+                <input id="tsk-des" type="text" placeholder="Description" required></input>
+                <label>Date</label>
+                <input id="dates" type="date" placeholder="Completion date"></input>
+                <button type="submit" id="task-btn" name="Create Task">+ADD TASK</button>
+            </form>
+        </div>
+    </section>
+
+
     <section id="task-window">
         <div class="tsks">
             <div class="my-tsk">
@@ -87,30 +102,15 @@
                 <th>completed</th>
                 
             </tr>
+            
             </form>
-            <div class="btn">
+            <div class="btn gray-red">
                 <button class="btn-2 edit"><i class="fa-sharp fa-light fa-file-pen"></i> EDIT TASK</button>
                 <button class="btn-2 del"><i class="fa-light fa-trash-can"></i> DELETE TASK</button>
             </div>            
         </div>
         </div>
     </section>
-
-    <section id="crt-window">
-        <div id="tsk" class="task">
-            <form id="task">
-                <label>Task</label>
-                <input id="tasks" type="text" placeholder="Enter task" required></input>
-                <label>Description</label>
-                <input id="tsk-des" type="text" placeholder="Description" required></input>
-                <label>Date</label>
-                <input id="dates" type="date" placeholder="Completion date"></input>
-                <button type="submit" id="task-btn" name="Create Task">+ADD TASK</button>
-            </form>
-        </div>
-    </section>
-    </main>
-
 
     <footer>
         <div id="contacts" >
@@ -122,6 +122,11 @@
             </div>
         </div>
     </footer>
+    
+    </main>
+
+
+    
 
  <script src="index.js"></script>   
 </body>
