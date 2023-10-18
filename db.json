@@ -35,6 +35,18 @@
       "description": "read about manupulating DOM",
       "date": "2023-10-04",
       "id": 6
+    },
+    {
+      "title": "Add click event",
+      "description": "event listener for the task button",
+      "date": "2023-10-18",
+      "id": 7
+    },
+    {
+      "title": "Website",
+      "description": "learning",
+      "date": "2023-10-01",
+      "id": 8
     }
   ]
 }

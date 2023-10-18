@@ -144,7 +144,8 @@ returnButton.addEventListener("click", function (){
 // Creating and Deleting tasks
 
 const addTaskBtn = document.getElementById('task-btn');
-addTaskBtn.addEventListener('click', () => {
+addTaskBtn.addEventListener('click', function (event) {
+  event.preventDefault();
   const tasks = document.getElementById('tasks').value;
   const description = document.getElementById('tsk-des').value;
   const date = document.getElementById('dates').value;
@@ -154,7 +155,8 @@ addTaskBtn.addEventListener('click', () => {
   addTask();
 })
 
-async function addTask(newTask) {
+async function addTask(event) {
+  // event.preventDefault();
   const response = await fetch('http://localhost:3000/tasks', {
       method: 'POST',
       headers: {
@@ -171,9 +173,7 @@ async function addTask(newTask) {
 async function fetchTasks() {
   const response = await fetch('http://localhost:3000/tasks');
   const tasks = await response.json();
- 
-
-  tasks.forEach(item => {
+   tasks.forEach(item => {
     const tasksTable = document.createElement("tr");
     tasksTable.innerHTML = `
  <td>${item.title}</td>
@@ -189,6 +189,30 @@ async function fetchTasks() {
 }
 
 
+document.querySelector('#del-all').addEventListener('click', (e) => {
+  e.preventDefault();
+  deleteTask(task.id)
+
+})
+async function deleteTask(taskId) {
+  fetch(`http://localhost:3000/tasks/${task.Id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+  })
+  .then(response => response.json())
+  .then(taskItem => {
+    taskItem.remove();
+  })
+};
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  fetchTasks();
+})
+
 // async function editTask(updatedTask) {
 //   const response = await fetch(`http://localhost:3000/tasks/${updatedTask.id}`, {
 //       method: 'PUT',
@@ -201,24 +225,6 @@ async function fetchTasks() {
 //   const tsk = document.getElementById("tsk-view");
 //   editedTask.textContent = tsk.task;
 // }
-
-
-async function deleteTask(taskId) {
-  const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-      method: 'DELETE',
-  })
-  .then(response => response.json())
-  .then(data => {
-    taskItem.remove();
-  })
-};
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  fetchTasks();
-})
-
 
 
   
@@ -237,52 +243,53 @@ document.addEventListener("DOMContentLoaded", function() {
   //       // window.location.href = "#tsk-view";
 //   //   });
 // })
-function updateTasksList() {
-  const taskList = document.getElementById('task-view');
-  taskList.innerHTML = ''; 
-  db.tasks.forEach((task, index) => {
-      const taskItem = document.createElement('div');
-      taskItem.innerHTML = `
-          <h3>${task.title}</h3>
-          <p>${task.description}</p>
-      `;
-      taskList.appendChild(taskItem);
-  });
-}
+// function updateTasksList() {
+//   const taskList = document.getElementById('task-view');
+//   taskList.innerHTML = ''; 
+//   db.tasks.forEach((task, index) => {
+//       const taskItem = document.createElement('div');
+//       taskItem.innerHTML = `
+//           <h3>${task.title}</h3>
+//           <p>${task.description}</p>
+//       `;
+//       taskList.appendChild(taskItem);
+//   });
+// }
 
-const { json } = require('body-parser');
-const fs = require('fs');
-const app = json();
-const port = 3000;
+// const { json } = require('body-parser');
+// const { createDecipheriv } = require('crypto');
+// const fs = require('fs');
+// const app = json();
+// const port = 3000;
 
-app.use(db.json());
+// app.use(db.json());
 
-app.post('#tsk', (req, res) => {
-  const taskData = req.body;
+// app.post('#tsk', (req, res) => {
+//   const taskData = req.body;
 
-  fs.readFile('db.json', (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: 'Could not read data.' });
-    }
+//   fs.readFile('db.json', (err, data) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Could not read data.' });
+//     }
 
-    const existingData = JSON.parse(data);
+//     const existingData = JSON.parse(data);
 
-    // Adding tasks to the existing array
-    existingData.push(taskData);
+//     // Adding tasks to the existing array
+//     existingData.push(taskData);
 
-    // Write the updated data back to the JSON file
-    fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Could not write data.' });
-      }
-      res.json({ message: 'Task Created!' });
-    });
-  });
-});
+//     // Write the updated data back to the JSON file
+//     fs.writeFile('taskData.json', JSON.stringify(existingData), (err) => {
+//       if (err) {
+//         return res.status(500).json({ error: 'Could not write data.' });
+//       }
+//       res.json({ message: 'Task Created!' });
+//     });
+//   });
+// });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
 
 // function toggleVisibility (){
 //     let div = document.getElementById("log-page");
