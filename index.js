@@ -188,23 +188,26 @@ async function fetchTasks() {
   
 }
 
-
-document.querySelector('#del-all').addEventListener('click', (e) => {
+const deleteBtn = document.querySelector("#del-all")
+deleteBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  deleteTask(task.id)
+  deleteTask();
 
 })
 async function deleteTask(taskId) {
-  fetch(`http://localhost:3000/tasks/${task.Id}`, {
+  fetch(`http://localhost:3000/tasks/${tasks.Id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       }
   })
   .then(response => response.json())
-  .then(taskItem => {
-    taskItem.remove();
-  })
+  .then(taskItem => (taskItem.forEach (item =>{
+    const items = document.getElementById("tsk-view")
+    items.innerHTML= '';
+    item.remove();
+  })))
+  console.log(taskItem);
 };
 
 
